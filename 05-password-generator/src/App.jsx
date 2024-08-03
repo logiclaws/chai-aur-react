@@ -29,9 +29,11 @@ function App() {
     passwordGenerator()
   },[length, isNumberAllowed, isCharAllowed, passwordGenerator])
 
-  const copyToClipboard = ()=>{
-
-  }
+  const copyPasswordToClipboard = useCallback(()=>{
+    passwordRef.current?.select();
+    // passwordRef.current?.setSelectionRange(0,3)
+    window.navigator.clipboard.writeText(password);
+  }, [password]);
   return (
     <>
       <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-5 my-8 text-orange-500 bg-gray-700'>
@@ -43,7 +45,8 @@ function App() {
           placeholder='Password'
           readOnly
           ref={passwordRef} />
-          <button className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'>Copy</button>
+          <button className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
+          onClick={copyPasswordToClipboard}>Copy</button>
         </div>
         <div className='flex text-sm gap-x-2'>
           <div className='flex items-center gap-x-1'>
