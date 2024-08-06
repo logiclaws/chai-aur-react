@@ -2,16 +2,19 @@ import useCurrenyInfo from './hooks/useCurrencyInfo'
 import {InputBox} from './components'
 import { useState } from 'react'
 function App() {
-  
+  // variable declarations
   const[amount, setAmount] = useState('');
   const[from, setFrom] = useState("usd");
   const[to, setTo] = useState("inr");
   const[convertedAmount, setConvertedAmount] = useState('')
-
+    
+  // usage of custom hook
   const currencyInfo = useCurrenyInfo(from)
 
+  // fetching keys
   const options = Object.keys(currencyInfo);
 
+  // swap function to switch between currencies
   const swap = ()=>{
     setFrom(to)
     setTo(from)
@@ -19,6 +22,7 @@ function App() {
     setAmount(convertedAmount)
   }
 
+  // convert function to convert the curreny
   const convert = ()=>{
     setConvertedAmount(amount * currencyInfo[to])
   }
@@ -63,7 +67,7 @@ function App() {
                                 amount={convertedAmount} 
                                currenyOptions = {options}
                                onCurrencyChange={(currency)=>{setTo(currency)}}
-                               selectCurrency={to}
+                               selectCurrency={from}
                                amountDisable
                             />
                         </div>
