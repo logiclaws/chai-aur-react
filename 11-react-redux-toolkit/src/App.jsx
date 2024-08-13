@@ -1,10 +1,13 @@
-import { useState } from 'react'
-function App() {
-  const [count, setCount] = useState(0)
+import AddTodo from './components/AddTodo'
+import Todos from './components/Todos'
 
+function App() {
+  
   return (
     <>
-      <h1>Learn about redux-toolkit</h1>
+      <h1 className='text-3xl text-center'>Learn about redux-toolkit</h1>
+      <AddTodo />
+      <Todos />
     </>
   )
 }
